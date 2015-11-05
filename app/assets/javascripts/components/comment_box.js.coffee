@@ -9,7 +9,7 @@ window.CommentBox = Vue.extend(
 
       $.ajax(
         data: child.form_data
-        url: '/comments' #TODO: install js-routes
+        url: Zvample.comments_path()
         type: 'POST'
 
         success: (data) ->

@@ -15,6 +15,7 @@
 #= require turbolinks
 #= require vue
 #= require underscore
+#= require js-routes
 #= require_tree .
 
 $(document).ready ->
