@@ -1,0 +1,25 @@
+= @post.title_ru
+
+-# %comment-box(comments=@comments inline-template)
+  %p Hllo
+
+-# %comment-list( comment-nodes = @comments inline-template )
+-#   %div( v-for='comment in comments' track-by='id' )
+-#     %comment( :comment = 'comment' )
+
+%comment-box( comment-nodes = @comments )
+
+%script( type='text/x-template' id='comment-list-tpl' )
+  %div( v-for='comment in comments' track-by='id' )
+    %comment( :comment = 'comment' )
+
+%script( type='text/x-template' id='comment-box-tpl' )
+  %comment-list( :comments = 'comments' )
+  %comment-form
+
+%script( type='text/x-template' id='comment-form-tpl' )
+  = simple_form_for @post.comments.build, html: { 'v-on:submit.prevent': 'addComment($event)' } do |f|
+    = f.input :body, as: :text, input_html: { 'v-model': 'body' }
+    = f.input :post_id, as: :hidden, value: @post.id
+    = f.submit
+  {{ body }}
