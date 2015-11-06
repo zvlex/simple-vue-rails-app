@@ -1,6 +1,10 @@
 window.Comment = Vue.extend(
-  props: ['comment']
-  template: '<pre>{{ comment.id }} - {{ comment.body }}</pre>'
+  template: '#comment-tpl'
+
+  props:
+    comment:
+      type: Object
+      required: true
 )
 
 Vue.component('comment', window.Comment)

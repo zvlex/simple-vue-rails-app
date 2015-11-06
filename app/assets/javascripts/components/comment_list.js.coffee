@@ -1,5 +1,6 @@
 window.CommentList = Vue.extend(
   template: '#comment-list-tpl'
+
   props: ['comments']
 )
 

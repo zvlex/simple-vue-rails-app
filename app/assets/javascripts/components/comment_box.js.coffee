@@ -1,8 +1,17 @@
 window.CommentBox = Vue.extend(
   template: '#comment-box-tpl'
-  props: ['commentNodes']
+
+  props:
+    commentNodes:
+      type: String
+      require: true
+    postId:
+      type: String
+      required: true
+
   data: ->
     comments: JSON.parse(this.commentNodes)
+
   events:
     'signal:addComment': (child) ->
       self = this
@@ -14,12 +23,11 @@ window.CommentBox = Vue.extend(
 
         success: (data) ->
           self.comments = data
+          child.$set('body', undefined)
 
         error: (data) ->
-          console.error('fiuck')
+          console.error('Some error :(')
       )
-
-      child.$set('body', undefined)
 )
 
 Vue.component('comment-box', window.CommentBox)

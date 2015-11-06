@@ -1,0 +1,3 @@
+%script( type='text/x-template' id='comment-list-tpl' )
+  %div( v-for='comment in comments' track-by='id' )
+    %comment( :comment = 'comment' )
