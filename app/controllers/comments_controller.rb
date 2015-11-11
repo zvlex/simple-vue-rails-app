@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  # before_filter :require_login, only: [:create, :edit, :update]
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.build(comment_params)
@@ -16,7 +18,7 @@ class CommentsController < ApplicationController
   private
 
      def comment_params
-       params.require(:comment).permit(:body, :post_id)
+       params.require(:comment).permit(:body, :post_id, :user_id)
      end
 
 end

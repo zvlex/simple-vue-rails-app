@@ -7,6 +7,21 @@
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
+    %nav
+      - if current_user
+        = current_user.email
+        = link_to 'Edit', edit_user_path(current_user)
+        = link_to 'Logout', :logout, method: :post
+      - else
+        = link_to 'Register', new_user_path
+        |
+        = link_to 'Login', :login
+
+      %p#success
+        = flash[:success]
+      %p#alert
+        = flash[:alert]
+
     = yield
 
     = render partial: '/vue_templates'

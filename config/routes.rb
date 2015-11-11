@@ -15,6 +15,12 @@ Rails.application.routes.draw do
   #   resources :products
   resources :posts
   resources :comments
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get 'login' => 'sessions#new', as: :login
+  post 'logout' => 'sessions#destroy', as: :logout
+
   # Example resource route with options:
   #   resources :products do
   #     member do
