@@ -1,4 +1,13 @@
 = simple_form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      %h2
+        #{ pluralize(@user.errors.count, "error") } prohibited
+    %ul
+      - @user.errors.full_messages.each do |msg|
+        %li
+          = msg
+
   = f.input :email, as: :email
   = f.input :password, as: :password
   = f.input :password_confirmation, as: :password

@@ -11,10 +11,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    binding.pry
+
     if @user.save
       login(params[:user][:email], params[:user][:password])
-      redirect_to root_url, notice: 'success'
+
+      redirect_to root_url, success: 'success'
     else
       render :new
     end
@@ -24,9 +25,9 @@ class UsersController < ApplicationController
     @user = User.load_from_activation_token(params[:id])
 
     if @user && @user.activate!
-      redirect_to login_path, notice: 'Was activated'
+      redirect_to login_path, success: 'Was activated'
     else
-      redirect_to root_path, notice: 'Cannot activate user'
+      redirect_to root_path, alert: 'Cannot activate user'
     end
   end
 

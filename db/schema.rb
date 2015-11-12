@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112123948) do
+ActiveRecord::Schema.define(version: 20151112210217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20151112123948) do
     t.string   "first_name"
     t.string   "last_name"
     t.date     "birth_date"
-    t.string   "email",                                        null: false
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
-    t.integer  "login_count",                  default: 0,     null: false
-    t.boolean  "is_active",                    default: false, null: false
+    t.integer  "login_count",                     default: 0,     null: false
+    t.boolean  "is_active",                       default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_me_token"
@@ -58,11 +58,15 @@ ActiveRecord::Schema.define(version: 20151112123948) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
-    t.boolean  "is_admin",                     default: false
+    t.boolean  "is_admin",                        default: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
+    t.datetime "reset_password_email_sent_at"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
 end

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :posts, expect: :destroy
   resources :comments
   resources :sessions, only: [:new, :create, :destroy]
-
+  resources :password_resets
   resources :users, expect: :destroy do
     member do
       get :activate

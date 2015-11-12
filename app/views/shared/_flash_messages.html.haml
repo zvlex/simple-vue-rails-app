@@ -1,0 +1,4 @@
+-# TODO: use vue-strap
+- ApplicationHelper::FLASH_MESSAGE_TYPES.each do |message_type|
+  %p(id = message_type)
+    = flash[message_type]

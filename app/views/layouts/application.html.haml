@@ -21,11 +21,6 @@
         |
         = link_to 'Login', :login
 
-      -# TODO: Move to partial (use vue-strap)
-      - [:success, :alert, :notice].each do |msg|
-        %p(id = msg)
-          = flash[msg]
-
     = yield
 
     = render partial: '/vue_templates'
