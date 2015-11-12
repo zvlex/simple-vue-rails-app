@@ -1,0 +1,2 @@
+%p Welcome, #{ @user.email }!
+%p Now you need to activate you profile, just visit #{ link_to 'link', activate_user_url(@user.activation_token) }

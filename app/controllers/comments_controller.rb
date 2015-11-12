@@ -3,7 +3,9 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
+
     @comment = @post.comments.build(comment_params)
+    @comment.user = current_user
 
     if @comment.save
       if request.xhr?
@@ -18,7 +20,7 @@ class CommentsController < ApplicationController
   private
 
      def comment_params
-       params.require(:comment).permit(:body, :post_id, :user_id)
+       params.require(:comment).permit(:body, :post_id)
      end
 
 end

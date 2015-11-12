@@ -3,11 +3,15 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Zvample
+    = include_gon
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     %nav
+      - if is_current_user_admin?
+        = link_to 'Admin', admin_root_url
+
       - if current_user
         = current_user.email
         = link_to 'Edit', edit_user_path(current_user)
@@ -17,10 +21,10 @@
         |
         = link_to 'Login', :login
 
-      %p#success
-        = flash[:success]
-      %p#alert
-        = flash[:alert]
+      -# TODO: Move to partial (use vue-strap)
+      - [:success, :alert, :notice].each do |msg|
+        %p(id = msg)
+          = flash[msg]
 
     = yield
 

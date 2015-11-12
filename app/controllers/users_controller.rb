@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, only: [:edit, :update]
+  skip_before_filter :require_login, except: [:edit, :update]
 
   def new
     @user = User.new
@@ -17,6 +17,16 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: 'success'
     else
       render :new
+    end
+  end
+
+  def activate
+    @user = User.load_from_activation_token(params[:id])
+
+    if @user && @user.activate!
+      redirect_to login_path, notice: 'Was activated'
+    else
+      redirect_to root_path, notice: 'Cannot activate user'
     end
   end
 

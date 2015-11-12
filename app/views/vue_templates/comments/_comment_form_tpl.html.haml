@@ -5,5 +5,4 @@
   = simple_form_for :comment, html: { 'v-on:submit.prevent': 'addComment($event)' } do |f|
     = f.input :body, as: :text, input_html: { 'v-model': 'body' }
     = f.input :post_id, as: :hidden, input_html: { name: 'post_id', value: '{{ postId }}' }
-    = f.input :user_id, as: :hidden, input_html: { value: '{{ postId }}' }
     = f.submit

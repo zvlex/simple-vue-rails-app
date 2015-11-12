@@ -22,7 +22,9 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'sorcery'
-
+gem 'gon'
+gem 'active_model_serializers'
+gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
 gem 'simple_form'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -45,6 +47,7 @@ group :development, :test do
   gem 'pry-rails'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'letter_opener'
 end
 
 group :development do

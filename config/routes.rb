@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
+      resources dashboard_resource
+    end
+
+    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -13,10 +21,15 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :posts
+  resources :posts, expect: :destroy
   resources :comments
-  resources :users
   resources :sessions, only: [:new, :create, :destroy]
+
+  resources :users, expect: :destroy do
+    member do
+      get :activate
+    end
+  end
 
   get 'login' => 'sessions#new', as: :login
   post 'logout' => 'sessions#destroy', as: :logout

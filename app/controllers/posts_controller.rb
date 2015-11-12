@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  skip_before_filter :require_login, except: [:new, :edit, :create]
   before_filter :find_post!, only: :show
 
   def index
