@@ -10,4 +10,6 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
   validates :email, :password, :password_confirmation, presence: true
+
+  scope :admins, -> { where(is_admin: true) }
 end

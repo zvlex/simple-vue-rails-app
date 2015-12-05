@@ -6,13 +6,9 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
 
-  def show
-    @comments = @post.comments.to_json
-  end
+  def show; end
 
-  def create
-    binding.pry
-  end
+  def create; end
 
   private
 

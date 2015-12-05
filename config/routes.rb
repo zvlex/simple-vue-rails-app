@@ -21,10 +21,14 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :posts, expect: :destroy
-  resources :comments
+
+  resources :posts do
+    resources :comments
+  end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
+
   resources :users, expect: :destroy do
     member do
       get :activate

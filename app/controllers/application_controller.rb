@@ -10,10 +10,14 @@ class ApplicationController < ActionController::Base
 
     def init_js_data
       gon.is_logged_in = logged_in?
-      gon.current_user = UserFrontDataSerializer.new(current_user) if logged_in?
+
+      if logged_in?
+        gon.current_user = UserFrontDataSerializer.new(current_user)
+        gon.is_user_banned = !!current_user.deleted_at?
+      end
     end
 
     def not_authenticated
-      redirect_to login_path, alert: "Please login first"
+      render nothing: true, status: 401
     end
 end

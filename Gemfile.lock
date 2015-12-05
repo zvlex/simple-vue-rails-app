@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/thoughtbot/administrate.git
-  revision: fcd3fc7da4f13b5c3d9b08bb4add1ed2510958fe
+  revision: 3e0acb2c53ece075dc03c880b5c7b829ed081afc
   specs:
-    administrate (0.1.0)
+    administrate (0.1.1)
       autoprefixer-rails (~> 6.0)
       datetime_picker_rails (~> 0.0.5)
       inline_svg (~> 0.6)
@@ -58,17 +58,20 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.3.8)
     arel (6.0.3)
-    autoprefixer-rails (6.1.0.1)
+    autoprefixer-rails (6.1.2)
       execjs
       json
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bourbon (4.2.6)
       sass (~> 3.4)
       thor (~> 0.19)
     builder (3.2.2)
-    byebug (6.0.2)
+    byebug (8.2.1)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -76,7 +79,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.10.0)
     datetime_picker_rails (0.0.5)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.2)
@@ -86,9 +89,11 @@ GEM
       multipart-post (>= 1.2, < 3)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gon (5.0.4)
-      actionpack (>= 2.3.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
       json
+      multi_json
+      request_store (>= 1.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -124,16 +129,16 @@ GEM
       activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
-    letter_opener (1.1.2)
+    letter_opener (1.4.1)
       launchy (~> 2.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
-    mime-types (2.6.2)
-    mini_portile (0.6.2)
-    minitest (5.8.2)
+    mime-types (2.99)
+    mini_portile2 (2.0.0)
+    minitest (5.8.3)
     momentjs-rails (2.10.6)
       railties (>= 3.1)
     multi_json (1.11.2)
@@ -142,8 +147,8 @@ GEM
     neat (1.7.2)
       bourbon (>= 4.0)
       sass (>= 3.3)
-    nokogiri (1.6.6.2)
-      mini_portile (~> 0.6.0)
+    nokogiri (1.6.7)
+      mini_portile2 (~> 2.0.0.rc2)
     normalize-rails (3.0.3)
     oauth (0.4.7)
     oauth2 (1.0.0)
@@ -152,7 +157,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
-    pg (0.18.3)
+    pg (0.18.4)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -173,9 +178,9 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.4)
       sprockets-rails
-    rails-assets-pure (0.6.0)
     rails-assets-underscore (1.8.3)
-    rails-assets-vue (1.0.4)
+    rails-assets-vue (1.0.10)
+    rails-assets-vue-resource (0.1.17)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -191,7 +196,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    ruby_parser (3.5.0)
+    request_store (1.2.1)
+    ruby_parser (3.7.2)
       sexp_processor (~> 4.1)
     sass (3.4.19)
     sass-rails (5.0.4)
@@ -213,8 +219,8 @@ GEM
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
       oauth2 (>= 0.8.0)
-    spring (1.4.0)
-    sprockets (3.4.0)
+    spring (1.5.0)
+    sprockets (3.4.1)
       rack (> 1, < 3)
     sprockets-rails (2.3.3)
       actionpack (>= 3.0)
@@ -240,6 +246,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   administrate!
+  bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
   gon
@@ -251,9 +258,9 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.4)
-  rails-assets-pure!
   rails-assets-underscore!
   rails-assets-vue!
+  rails-assets-vue-resource!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   simple_form

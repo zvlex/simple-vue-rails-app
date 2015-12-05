@@ -1,3 +1,7 @@
 %script( type='text/x-template' id='comment-tpl' )
   %p
     {{ comment.id }} - {{ comment.body }}
+
+  %a{href:'#', '@click.prevent':"showForm"} Reply
+
+  %comment-form(v-if="replied" :parent-id="comment.id")

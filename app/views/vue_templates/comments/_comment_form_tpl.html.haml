@@ -1,8 +1,20 @@
 %script( type='text/x-template' id='comment-form-tpl' )
+  %comment-notification-list(:notifications = 'notifications')
+
   %div
-    %pre {{ body }}
+    %pre(v-show = 'body')
+      {{ body }}
+
+  %div(v-if = '!loggedIn')
+    Please login bla bla bla template
 
   = simple_form_for :comment, html: { 'v-on:submit.prevent': 'addComment($event)' } do |f|
-    = f.input :body, as: :text, input_html: { 'v-model': 'body' }
-    = f.input :post_id, as: :hidden, input_html: { name: 'post_id', value: '{{ postId }}' }
+    = f.input :body, as: :text, input_html: { 'v-model': 'body', ':disabled': "!loggedIn" }
     = f.submit
+
+  %alert{":show.sync":"showRight", ":duration":"5000", type:"warning", placement:"top-right", "width":"500", dismissable: true}
+    %span.icon-ok-circled.alert-icon-float-left
+    %strong
+      Warning!
+    %p
+      Please #{ link_to 'Sign In', :login } or #{ link_to 'Sing up', new_user_path } for using our service

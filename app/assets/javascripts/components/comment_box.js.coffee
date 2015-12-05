@@ -2,32 +2,33 @@ window.CommentBox = Vue.extend(
   template: '#comment-box-tpl'
 
   props:
-    commentNodes:
-      type: String
-      require: true
     postId:
       type: String
       required: true
 
   data: ->
-    comments: JSON.parse(this.commentNodes)
+    comments: []
+
+  computed:
+    postCommentsUrl: ->
+      Zvample.post_comments_path(this.postId)
+
+  ready: ->
+    @$http.get @postCommentsUrl, (comments) ->
+      @comments = comments
 
   events:
     'signal:addComment': (child) ->
-      self = this
+      formData = { comment: { body: child.body, parent_id: child.parentId } }
 
-      $.ajax(
-        data: child.form_data
-        url: Zvample.comments_path()
-        type: 'POST'
-
-        success: (data) ->
-          self.comments = data
+      this.$http.post(@postCommentsUrl, formData, (data, status) =>
+        Vue.nextTick =>
+          @comments = data
           child.$set('body', undefined)
-
-        error: (data) ->
-          console.error('Some error :(')
-      )
+      ).error (data) =>
+          switch data.status
+            when 422
+              child.$set('notifications', data.responseJSON.errors)
 )
 
 Vue.component('comment-box', window.CommentBox)

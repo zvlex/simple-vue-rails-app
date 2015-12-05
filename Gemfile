@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-vue'
-  gem 'rails-assets-pure'
   gem 'rails-assets-underscore'
+  gem 'rails-assets-vue-resource'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -12,6 +12,7 @@ gem 'rails', '4.2.4'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'bootstrap-sass'
 gem 'haml-rails'
 gem 'js-routes'
 # Use Uglifier as compressor for JavaScript assets

@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_login, except: [:destroy]
+  skip_before_filter :require_login, except: :destroy
 
   def new; end
 
@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_back_or_to root_url, success: 'Ok'
+    redirect_back_or_to root_url, success: 'Success'
   end
 
   private
