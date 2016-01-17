@@ -14,21 +14,22 @@ window.CommentBox = Vue.extend(
       Zvample.post_comments_path(this.postId)
 
   ready: ->
-    @$http.get @postCommentsUrl, (comments) ->
-      @comments = comments
+    @$http.get(@postCommentsUrl).then (response) ->
+      @comments = response.data
 
   events:
     'signal:addComment': (child) ->
       formData = { comment: { body: child.body, parent_id: child.parentId } }
 
-      this.$http.post(@postCommentsUrl, formData, (data, status) =>
+      @$http.post(@postCommentsUrl, formData).then ((response) =>
         Vue.nextTick =>
-          @comments = data
+          @comments = response.data
+
           child.$set('body', undefined)
-      ).error (data) =>
-          switch data.status
+      ), (response) =>
+          switch response.status
             when 422
-              child.$set('notifications', data.responseJSON.errors)
+              child.$set('notifications', response.data.errors)
 )
 
 Vue.component('comment-box', window.CommentBox)
