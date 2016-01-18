@@ -11,8 +11,11 @@ window.Comment = Vue.extend(
 
   methods:
     showForm: ->
-      this.replied = !this.replied
+      @replied = !@replied
 
+  events:
+    'signal:hideForm': ->
+      @replied = false
 )
 
 Vue.component('comment', window.Comment)

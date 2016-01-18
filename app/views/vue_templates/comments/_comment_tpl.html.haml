@@ -1,7 +1,15 @@
 %script( type='text/x-template' id='comment-tpl' )
-  %p
-    {{ comment.id }} - {{ comment.body }}
+  .comments-list-block
+    .row
+      .col-md-12
+        %small
+          = link_to '#{{ comment.id }}', '#'
+    .row
+      %p
+        %strong
+          {{ comment.body }}
 
-  %a{href:'#', '@click.prevent':"showForm"} Reply
+    .row
+      %a{href:'#', '@click.prevent':"showForm"} Reply
 
-  %comment-form(v-if="replied" :parent-id="comment.id")
+      %comment-form(v-if="replied" :parent-id="comment.id")

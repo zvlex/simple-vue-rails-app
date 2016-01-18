@@ -11,7 +11,7 @@ window.CommentBox = Vue.extend(
 
   computed:
     postCommentsUrl: ->
-      Zvample.post_comments_path(this.postId)
+      Zvample.post_comments_path(@postId)
 
   ready: ->
     @$http.get(@postCommentsUrl).then (response) ->
@@ -26,6 +26,8 @@ window.CommentBox = Vue.extend(
           @comments = response.data
 
           child.$set('body', undefined)
+
+          @$broadcast('signal:hideForm')
       ), (response) =>
           switch response.status
             when 422

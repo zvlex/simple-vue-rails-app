@@ -7,7 +7,7 @@ window.CommentForm = Vue.extend(
       default: undefined
 
   data: ->
-    body: undefined
+    body: "" # TODO: do NOT assign text field to undefined!!
     notifications: []
     loggedIn: gon.is_logged_in
     isUserBanned: gon.is_user_banned

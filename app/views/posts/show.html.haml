@@ -1,3 +1,10 @@
-= @post.title_ru
+.row
+  %article.col-md-12
+    %header
+      %h2
+        = @post.title_ru
+    %section
+      = raw @post.body_ru
 
+%hr
 %comment-box( post-id = "#{@post.id}" )
