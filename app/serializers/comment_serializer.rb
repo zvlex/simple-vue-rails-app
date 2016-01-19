@@ -1,5 +1,5 @@
 class CommentSerializer < ActiveModel::Serializer
-  attributes :id, :body, :children, :parent_id, :tree_depth
+  attributes :id, :body, :children, :parent_id, :tree_depth, :username, :commented_at
 
   def children
     result = []
@@ -11,4 +11,11 @@ class CommentSerializer < ActiveModel::Serializer
     result
   end
 
+  def username
+    object.user.email.split(/@/).first
+  end
+
+  def commented_at
+    object.created_at.strftime("%d %B %Y %H:%M")
+  end
 end

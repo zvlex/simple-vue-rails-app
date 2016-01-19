@@ -1,6 +1,9 @@
 window.CommentList = Vue.extend(
   template: '#comment-list-tpl'
 
+  data: ->
+    maxCommentDepth: 5
+
   props: ['comments']
 )
 

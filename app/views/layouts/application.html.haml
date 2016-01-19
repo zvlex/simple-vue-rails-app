@@ -9,18 +9,26 @@
     = csrf_meta_tags
   %body
     %header
-      %nav
-        - if is_current_user_admin?
-          = link_to 'Admin', admin_root_url
+      %nav.navbar.navbar-default
+        .navbar-header
+          = link_to 'Zvample', root_url, class: 'navbar-brand'
 
-        - if current_user
-          = current_user.email
-          = link_to 'Edit', edit_user_path(current_user)
-          = link_to 'Logout', :logout, method: :post
-        - else
-          = link_to 'Register', new_user_path
-          |
-          = link_to 'Login', :login
+        .collapse.navbar-collapse
+          .nav.navbar-nav
+            - if is_current_user_admin?
+              %li
+                = link_to 'Admin', admin_root_url
+
+          .nav.navbar-nav.navbar-right.login-buttons
+            - if current_user
+              .navbar-text
+                = current_user.email
+
+              = link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary navbar-btn'
+              = link_to 'Logout', :logout, method: :post, class: 'btn btn-danger navbar-btn'
+            - else
+              = link_to 'Login', :login, class: 'btn btn-success navbar-btn'
+              = link_to 'Register', new_user_path, class: 'btn btn-default navbar-btn'
 
     .container
       = yield

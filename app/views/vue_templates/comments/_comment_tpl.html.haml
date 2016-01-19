@@ -1,15 +1,24 @@
 %script( type='text/x-template' id='comment-tpl' )
-  .comments-list-block
-    .row
-      .col-md-12
-        %small
-          = link_to '#{{ comment.id }}', '#'
+  .comment-header
+    .row.top-line
+      .col-md-2
+        %span.label.label-green
+          {{ comment.username }}
+      .col-md-3
+        %time.small
+          {{ comment.commentedAt }}
+      .col-md-1.small
+        = link_to '#{{ comment.id }}', '#'
+      .col-md-1.col-md-offset-5
+        %span
+
+  .comment-body
     .row
       %p
-        %strong
-          {{ comment.body }}
+        {{ comment.body }}
 
-    .row
+  .comment-actions
+    .row.reply
       %a{href:'#', '@click.prevent':"showForm"} Reply
 
       %comment-form(v-if="replied" :parent-id="comment.id")

@@ -1,8 +1,8 @@
 %script( type='text/x-template' id='comment-list-tpl' )
-  %div( v-for='comment in comments' track-by='id' )
+  .comment-item( v-for='comment in comments' track-by='id' )
     %comment( :comment = 'comment' )
 
-    %div(:class = "{nestedComment: comment.treeDepth < 5}")
+    %div(:class = "{nestedComment: comment.treeDepth < maxCommentDepth}")
       %comment-list( :comments = 'comment.children' )
 
     -# %pre
