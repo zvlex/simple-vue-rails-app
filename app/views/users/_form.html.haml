@@ -1,4 +1,4 @@
-= simple_form_for @user do |f|
+= simple_form_for @user, defaults: { input_html: { class: 'form-control' } } do |f|
   - if @user.errors.any?
     #error_explanation
       %h2
@@ -8,7 +8,11 @@
         %li
           = msg
 
-  = f.input :email, as: :email
-  = f.input :password, as: :password
-  = f.input :password_confirmation, as: :password
-  = f.submit
+  .form-group
+    = f.input :email, as: :email
+  .form-group
+    = f.input :password, as: :password
+  .form-group
+    = f.input :password_confirmation, as: :password
+  .form-group
+    = f.button :submit, class: 'btn btn-default'

@@ -1,5 +1,9 @@
-= simple_form_for @user, url: password_reset_path(@token), html: { method: :put } do |f|
-  = f.input :email, as: :email
-  = f.input :password, as: :password
-  = f.input :password_confirmation, as: :password
-  = f.submit
+= simple_form_for @user, url: password_reset_path(@token), defaults: { { input_html: 'form-control' } } do |f|
+  .form-group
+    = f.input :email, as: :email
+  .form-group
+    = f.input :password, as: :password
+  .form-group
+    = f.input :password_confirmation, as: :password
+  .form-group
+    = f.button :submit, class: 'btn btn-default'

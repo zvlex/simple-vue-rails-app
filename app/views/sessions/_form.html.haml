@@ -1,5 +1,9 @@
-= simple_form_for :session, { url: sessions_path } do |f|
-  = f.input :email, as: :email
-  = f.input :password, as: :password
-  = f.input :remember_me, as: :boolean
-  = f.submit
+= simple_form_for :session, url: sessions_path, defaults: { input_html: { class: 'form-control' } } do |f|
+  .form-group
+    = f.input :email, as: :email
+  .form-group
+    = f.input :password, as: :password
+  .checkbox
+    = f.input :remember_me, as: :boolean, input_html: { class: '' }
+  .form-group
+    = f.button :submit, class: 'btn btn-default'

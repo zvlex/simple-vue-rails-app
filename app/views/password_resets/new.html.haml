@@ -1,5 +1,5 @@
-= form_tag password_resets_path, method: :post do
-  .field
-    = label_tag :email
-    = text_field_tag :email
-    = submit_tag "Reset my password!"
+= simple_form_for password_resets_path, defaults: { input_html: { class: 'form-control' } } do |f|
+  .form-group
+    = f.input :email
+  .form-group
+    = f.button :submit, "Reset my password!", class: 'btn btn-default'
