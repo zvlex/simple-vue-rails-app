@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   #   resources :products
 
   resources :posts do
+    get :preview, on: :collection
+
     resources :comments
   end
 

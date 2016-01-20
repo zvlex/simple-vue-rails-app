@@ -6,9 +6,19 @@ class PostsController < ApplicationController
     @posts = Post.order(created_at: :desc)
   end
 
+  def new
+    @post = Post.new
+  end
+
   def show; end
 
   def create; end
+
+  def preview
+    html_data = MarkdownParser.new(params[:body]).convert_to_html
+
+    render html: html_data
+  end
 
   private
 
@@ -17,6 +27,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title_ru, :title_en, :body_ru, :body_en, :source)
+      params.require(:post).permit(:title, :body)
     end
 end

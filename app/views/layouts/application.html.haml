@@ -24,7 +24,8 @@
               .navbar-text
                 = current_user.email
 
-              = link_to 'Edit', edit_user_path(current_user), class: 'btn btn-primary navbar-btn'
+              = link_to 'Write Post', new_post_path, class: 'btn btn-success navbar-btn'
+              = link_to 'Edit', edit_user_path(current_user), class: 'btn btn-default navbar-btn'
               = link_to 'Logout', :logout, method: :post, class: 'btn btn-danger navbar-btn'
             - else
               = link_to 'Login', :login, class: 'btn btn-success navbar-btn'
