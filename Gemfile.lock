@@ -179,6 +179,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.5)
       sprockets-rails
+    rails-assets-autosize (3.0.14)
     rails-assets-underscore (1.8.3)
     rails-assets-vue (1.0.14)
     rails-assets-vue-resource (0.6.1)
@@ -261,6 +262,7 @@ DEPENDENCIES
   pg
   pry-rails
   rails (= 4.2.5)
+  rails-assets-autosize!
   rails-assets-underscore!
   rails-assets-vue!
   rails-assets-vue-resource!

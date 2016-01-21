@@ -16,6 +16,7 @@
 #= require vue-resource
 #= require underscore
 #= require js-routes
+#= require autosize
 #= require vue-strap.min
 #= require_tree .
 
@@ -23,6 +24,9 @@ $(document).ready ->
   Vue.http.headers.common['X-CSRF-Token'] = $('meta[name="csrf-token"]').attr('content')
 
   window.root_vue = new Vue(el: 'body')
+
+  # Auto resize textarea
+  autosize document.querySelectorAll('textarea')
 
 # VueStrap components
 Vue.component('alert', VueStrap.alert)

@@ -4,6 +4,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-vue'
   gem 'rails-assets-underscore'
   gem 'rails-assets-vue-resource'
+  gem 'rails-assets-autosize'
 end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
