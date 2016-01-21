@@ -5,4 +5,8 @@ module ApplicationHelper
     return current_user.is_admin? if logged_in?
     nil
   end
+
+  def markdown(text)
+    MarkdownParser.new(text).convert_to_html
+  end
 end

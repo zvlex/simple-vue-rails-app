@@ -1,5 +1,7 @@
 %script( type='text/x-template' id='markdown-editor-tpl' )
-  = simple_form_for :post, defaults: { input_html: { class: 'form-control' } } do |f|
+  = simple_form_for :post, url: posts_path, method: 'post', defaults: { input_html: { class: 'form-control' } } do |f|
+    .form-group
+      = f.input :title
     .form-group
       = f.input :body, as: :text, input_html: { 'v-model':'body', rows: 5 }
     .form-group

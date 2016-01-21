@@ -1,10 +1,10 @@
 .row
   %article.col-md-12
     %header
-      %h2
+      %h1
         = @post.title
     %section
-      = raw @post.body
+      = markdown @post.body
 
 %hr
 %comment-box( post-id = "#{@post.id}" )

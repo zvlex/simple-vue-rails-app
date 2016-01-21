@@ -18,6 +18,8 @@
             - if is_current_user_admin?
               %li
                 = link_to 'Admin', admin_root_url
+            %li
+              = link_to 'Posts', posts_url
 
           .nav.navbar-nav.navbar-right.login-buttons
             - if current_user
@@ -25,7 +27,7 @@
                 = current_user.email
 
               = link_to 'Write Post', new_post_path, class: 'btn btn-success navbar-btn'
-              = link_to 'Edit', edit_user_path(current_user), class: 'btn btn-default navbar-btn'
+              = link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-default navbar-btn'
               = link_to 'Logout', :logout, method: :post, class: 'btn btn-danger navbar-btn'
             - else
               = link_to 'Login', :login, class: 'btn btn-success navbar-btn'

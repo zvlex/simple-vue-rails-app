@@ -12,7 +12,15 @@ class PostsController < ApplicationController
 
   def show; end
 
-  def create; end
+  def create
+    @post = Post.new(post_params)
+
+    if @post.save
+      redirect_to post_path(@post), notice: 'Post created'
+    else
+      render :new
+    end
+  end
 
   def preview
     html_data = MarkdownParser.new(params[:body]).convert_to_html
