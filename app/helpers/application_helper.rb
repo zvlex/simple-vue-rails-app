@@ -7,6 +7,6 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    MarkdownParser.new(text).convert_to_html
+    MarkdownParser.new(text).to_html
   end
 end

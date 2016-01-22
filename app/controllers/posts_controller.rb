@@ -23,7 +23,7 @@ class PostsController < ApplicationController
   end
 
   def preview
-    html_data = MarkdownParser.new(params[:body]).convert_to_html
+    html_data = MarkdownParser.new(params[:body]).to_html
 
     render html: html_data
   end
