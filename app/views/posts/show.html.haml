@@ -6,5 +6,7 @@
     %section
       = markdown @post.body
 
+%post-favorite-button( post-id = "#{@post.id}" :is-empty = "#{favorite_glyphicon_button(@post)}" quantity = "#{@post.favorites_quantity}" )
+
 %hr
 %comment-box( post-id = "#{@post.id}" )

@@ -23,7 +23,10 @@ Rails.application.routes.draw do
   #   resources :products
 
   resources :posts do
-    post :preview, on: :collection
+    collection do
+      post :preview
+      put :add_to_favorites
+    end
 
     resources :comments
   end

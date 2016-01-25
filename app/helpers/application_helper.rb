@@ -9,4 +9,12 @@ module ApplicationHelper
   def markdown(text)
     MarkdownParser.new(text).to_html
   end
+
+  def favorite_glyphicon_button(post)
+    if logged_in?
+      !current_user.included_in_favorites?(post)
+    else
+      nil
+    end
+  end
 end
