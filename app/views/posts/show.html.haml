@@ -6,6 +6,9 @@
     %section
       = markdown @post.body
 
+-# TODO: MOVE this post methods to serializer
+%post-rating-buttons( post = "#{@post.to_json}")
+
 %post-favorite-button( post-id = "#{@post.id}" :is-empty = "#{favorite_glyphicon_button(@post)}" quantity = "#{@post.favorites_quantity}" )
 
 %hr

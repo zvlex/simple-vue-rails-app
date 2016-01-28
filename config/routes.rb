@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     collection do
       post :preview
       put :add_to_favorites
+      put :vote
     end
 
     resources :comments

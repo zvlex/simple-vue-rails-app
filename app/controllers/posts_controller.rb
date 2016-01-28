@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   skip_before_filter :require_login, except: [:new, :edit, :create]
-  before_filter :find_post!, only: [:show, :add_to_favorites]
+  before_filter :find_post!, only: [:show, :add_to_favorites, :vote]
 
   def index
     @posts = Post.order(created_at: :desc)
@@ -43,6 +43,17 @@ class PostsController < ApplicationController
 
     render json: { status: status, notice: notice, quantity: @post.favorites_quantity }
 
+  end
+
+  def vote
+    json_data =
+      if current_user.rate_post(@post, params[:rate])
+        { notice: 'ok', quantity: @post.rating_quantity }
+      else
+        { notice: 'already voted', quantity: @post.rating_quantity }
+      end
+
+    render json: json_data
   end
 
   private

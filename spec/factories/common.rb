@@ -14,4 +14,10 @@ FactoryGirl.define do
     body 'Post body'
     user
   end
+
+  factory :post_vote do
+    user
+    post
+    rate 1
+  end
 end

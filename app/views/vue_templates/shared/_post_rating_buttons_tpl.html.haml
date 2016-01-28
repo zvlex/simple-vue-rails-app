@@ -1,0 +1,5 @@
+%script( type='text/x-template' id='post-rating-buttons-tpl')
+  %span {{ quantity }}
+  %button.glyphicon.glyphicon-chevron-up{'@click.prevent':'vote(1)'}
+  %button.glyphicon.glyphicon-eye-open{'@click.prevent':'vote(0)'}
+  %button.glyphicon.glyphicon-chevron-down{'@click.prevent':'vote(-1)'}

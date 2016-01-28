@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :comments
+  has_many :post_votes
 
   validates :email, :password, :password_confirmation, presence: true, if: :new_record?
 
@@ -34,5 +35,11 @@ class User < ActiveRecord::Base
 
   def add_favorites(post)
    self.favorite_posts << post.id
+  end
+
+  def rate_post(post, rate)
+    unless self.post_votes.where(post: post).exists?
+      self.post_votes.create(post: post, rate: rate)
+    end
   end
 end
