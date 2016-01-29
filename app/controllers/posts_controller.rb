@@ -10,7 +10,9 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def show; end
+  def show
+    @post_json_data = PostSerializer.new(@post, scope: current_user).to_json
+  end
 
   def create
     @post = Post.new(post_params)
@@ -33,7 +35,7 @@ class PostsController < ApplicationController
 
       notice, status =
         if current_user.included_in_favorites?(@post)
-          [t('ui.small_notifications.favorite_added'), nil]
+          [t('ui.small_notifications.favorite_added'), false]
         else
           [t('ui.small_notifications.favorite_added'), true]
         end
