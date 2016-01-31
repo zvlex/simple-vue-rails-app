@@ -49,5 +49,12 @@ describe User do
 
       expect(post.user_votes.size).to eq(3)
     end
+
+    specify 'user can not vote his post' do
+      post = create(:post, user: user)
+      user.rate_post(post, rate)
+
+      expect(user.post_votes).to be_empty
+    end
   end
 end

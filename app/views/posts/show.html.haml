@@ -6,8 +6,7 @@
     %section
       = markdown @post.body
 
--# TODO: MOVE this post methods to serializer
-%post-rating-buttons( post = "#{@post.to_json}")
+%post-rating-buttons( post = "#{@post_json_data}")
 
 %post-favorite-button( post = "#{@post_json_data}" )
 

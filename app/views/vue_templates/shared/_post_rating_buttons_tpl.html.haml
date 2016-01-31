@@ -1,5 +1,18 @@
 %script( type='text/x-template' id='post-rating-buttons-tpl')
-  %span {{ quantity }}
-  %button.glyphicon.glyphicon-chevron-up{'@click.prevent':'vote(1)'}
-  %button.glyphicon.glyphicon-eye-open{'@click.prevent':'vote(0)'}
-  %button.glyphicon.glyphicon-chevron-down{'@click.prevent':'vote(-1)'}
+  .row(v-show = 'isVoted')
+    %span
+      %button.format-button{'@click.prevent':'vote(1)'}
+        %span.rating-icons{':class':'[ ratesMap[defaultRate] ]'}
+        %span.favorites-quantity {{ quantity }}
+  .row( v-else )
+    %span( v-show = 'userPost' )
+      %button.format-button{'@click.prevent':'vote(0)'}
+        %span.rating-icons{':class':'[ ratesMap[0] ]'}
+        %span.favorites-quantity {{ quantity }}
+    %span( v-else )
+      %button.format-button{'@click.prevent':'vote(-1)'}
+        %span.glyphicon.glyphicon-minus
+      %button.format-button{'@click.prevent':'vote(0)'}
+        %span.glyphicon.glyphicon-eye-open
+      %button.format-button{'@click.prevent':'vote(1)'}
+        %span.glyphicon.glyphicon-plus

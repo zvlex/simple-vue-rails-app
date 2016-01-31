@@ -24,7 +24,7 @@
   margin-left: 3em
 
 .label-green
-  @expand .label
+  @extend .label
   background: rgba(73, 138, 7, 0.75)
 
 .comment-actions
@@ -36,3 +36,25 @@
 
 .favorite-button
   font-size: 1.3em
+
+.format-button
+  border: 1px solid #ccc
+  background-color: transparent
+
+.favorites-quantity
+  font-weight: bold
+
+.rating-icons
+  @extend .glyphicon
+
+  &.plus
+    @extend .glyphicon-plus
+    color: #5cb85c
+
+  &.minus
+    @extend .glyphicon-minus
+    color: #d9534f
+
+  &.eye-open
+    @extend .glyphicon-eye-open
+    color: #777

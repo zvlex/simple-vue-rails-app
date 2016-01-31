@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
     end
 
     def not_authenticated
-      render nothing: true, status: 401
+      render json: { alert: t('ui.small_notifications.basic.authentication_error') }
     end
 end

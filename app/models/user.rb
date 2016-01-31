@@ -38,6 +38,8 @@ class User < ActiveRecord::Base
   end
 
   def rate_post(post, rate)
+    return if post.owned_by?(self)
+
     unless self.post_votes.where(post: post).exists?
       self.post_votes.create(post: post, rate: rate)
     end

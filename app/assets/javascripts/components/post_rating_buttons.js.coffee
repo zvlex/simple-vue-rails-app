@@ -8,19 +8,37 @@ window.PostRatingButtons = Vue.extend(
         JSON.parse(val)
 
   data: ->
-    quantity: 0
-    isVoted: false
+    quantity:
+      @post.votesQuantity
+
+    isVoted:
+      @post.isVoted
+
+    defaultRate:
+      @post.defaultRate
+
+    userPost:
+      @post.userPost
+
+    ratesMap:
+      {
+        '-1': 'minus',
+        '0': 'eye-open',
+        '1': 'plus'
+      }
 
   methods:
     vote: (rate) ->
+      return if @post.userPost
       # TODO: show notifications
-      return if @isVoted
-
       params = { id: @post.id, rate: rate }
 
       @$http.put(Zvample.vote_posts_path(), params).then (response) ->
-        @quantity = response.data.quantity
-        @isVoted = true
+        if gon.is_logged_in
+          @$nextTick ->
+            @quantity = response.data.quantity
+            @isVoted = true
+            @defaultRate = rate
 )
 
 Vue.component('post-rating-buttons', window.PostRatingButtons)
