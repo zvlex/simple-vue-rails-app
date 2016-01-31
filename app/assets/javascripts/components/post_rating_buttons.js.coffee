@@ -30,7 +30,7 @@ window.PostRatingButtons = Vue.extend(
   methods:
     vote: (rate) ->
       return if @post.userPost
-      # TODO: show notifications
+
       params = { id: @post.id, rate: rate }
 
       @$http.put(Zvample.vote_posts_path(), params).then (response) ->
@@ -39,6 +39,8 @@ window.PostRatingButtons = Vue.extend(
             @quantity = response.data.quantity
             @isVoted = true
             @defaultRate = rate
+
+            root_vue.notify(response.data)
 )
 
 Vue.component('post-rating-buttons', window.PostRatingButtons)

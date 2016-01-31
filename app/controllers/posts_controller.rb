@@ -48,14 +48,14 @@ class PostsController < ApplicationController
   end
 
   def vote
-    notice =
+    json_data  =
       if current_user.rate_post(@post, params[:rate])
-        t('ui.small_notifications.post_rating.voted')
+        { success: t('ui.small_notifications.post_rating.voted') }
       else
-        t('ui.small_notifications.post_rating.already_voted')
+        { notice: t('ui.small_notifications.post_rating.already_voted') }
       end
 
-    render json: { notice: notice, quantity: @post.rating_quantity }
+    render json:  json_data.merge(quantity: @post.rating_quantity)
   end
 
   private

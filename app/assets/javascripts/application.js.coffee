@@ -17,16 +17,28 @@
 #= require underscore
 #= require js-routes
 #= require autosize
-#= require vue-strap.min
+#= require notify.min
 #= require_tree .
 
 $(document).ready ->
   Vue.http.headers.common['X-CSRF-Token'] = $('meta[name="csrf-token"]').attr('content')
 
-  window.root_vue = new Vue(el: 'body')
+  window.root_vue = new Vue(
+    el: 'body'
+
+    data: ->
+      notifyStylesMap: {
+        success: 'success'
+        notice: 'warn'
+        alert: 'error'
+      }
+
+    methods:
+      notify: (response_data) ->
+        noty_style = _.first(_.keys(response_data))
+
+        $.notify response_data[noty_style], @notifyStylesMap[noty_style]
+  )
 
   # Auto resize textarea
   autosize document.querySelectorAll('textarea')
-
-# VueStrap components
-Vue.component('alert', VueStrap.alert)
