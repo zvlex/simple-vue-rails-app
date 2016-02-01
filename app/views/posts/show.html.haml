@@ -6,9 +6,10 @@
     %section
       = markdown @post.body
 
-%post-rating-buttons( post = "#{@post_json_data}")
-
-%post-favorite-button( post = "#{@post_json_data}" )
+%hr
+.row
+  %post-rating-buttons( post = "#{@post_json_data}" )
+  %post-favorite-button( post = "#{@post_json_data}" )
 
 %hr
 %comment-box( post-id = "#{@post.id}" )

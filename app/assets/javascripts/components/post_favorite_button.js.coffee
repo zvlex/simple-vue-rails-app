@@ -15,12 +15,13 @@ window.PostFavoriteButton = Vue.extend(
 
   methods:
     add_to_favorites: ->
-      return unless gon.is_logged_in
-
       @$http.put(Zvample.add_to_favorites_posts_path(), {id: @post.id}).then (response) ->
-        @$nextTick ->
-          @isEmpty = response.data.status
-          @quantity = response.data.quantity
+        if gon.is_logged_in
+          @$nextTick ->
+            @isEmpty = response.data.status
+            @quantity = response.data.quantity
+
+        root_vue.notify(response.data)
 )
 
 Vue.component('post-favorite-button', window.PostFavoriteButton)

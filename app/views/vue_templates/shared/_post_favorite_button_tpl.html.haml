@@ -1,6 +1,5 @@
 %script( type='text/x-template' id='post-favorite-button-tpl' )
-  .row
-    .col-md-1
-      %button{href:'#', '@click.prevent':'add_to_favorites'}
-        %span.favorite-button.glyphicon(:class = "[isEmpty ? 'glyphicon-star-empty' : 'glyphicon-star']")
-        %span.favorite-button.bages {{ quantity }}
+  .col-md-1
+    %button.format-button{'@click.prevent':'add_to_favorites'}
+      %span.glyphicon(:class = "[isEmpty ? 'glyphicon-star-empty' : 'glyphicon-star']")
+      %span.bages {{ quantity }}

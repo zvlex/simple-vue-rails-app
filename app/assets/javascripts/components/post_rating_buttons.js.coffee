@@ -40,7 +40,7 @@ window.PostRatingButtons = Vue.extend(
             @isVoted = true
             @defaultRate = rate
 
-            root_vue.notify(response.data)
+        root_vue.notify(response.data)
 )
 
 Vue.component('post-rating-buttons', window.PostRatingButtons)

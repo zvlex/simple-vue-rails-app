@@ -29,7 +29,8 @@ $(document).ready ->
     data: ->
       notifyStylesMap: {
         success: 'success'
-        notice: 'warn'
+        notice: 'info'
+        warning: 'warn'
         alert: 'error'
       }
 

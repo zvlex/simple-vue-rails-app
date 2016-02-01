@@ -1,10 +1,10 @@
 %script( type='text/x-template' id='post-rating-buttons-tpl')
-  .row(v-show = 'isVoted')
+  .col-md-1.text-center( v-show = 'isVoted' )
     %span
       %button.format-button{'@click.prevent':'vote(1)'}
         %span.rating-icons{':class':'[ ratesMap[defaultRate] ]'}
         %span.favorites-quantity {{ quantity }}
-  .row( v-else )
+  .col-md-2.text-center( v-else )
     %span( v-show = 'userPost' )
       %button.format-button{'@click.prevent':'vote(0)'}
         %span.rating-icons{':class':'[ ratesMap[0] ]'}

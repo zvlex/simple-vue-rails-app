@@ -17,17 +17,17 @@ class CommentsController < ApplicationController
 
     @comments = @post.comments
 
-    if !current_user.deleted_at?
+    if current_user.deleted_at?
+      render json: { warning: t('ui.small_notifications.basic.user_banned') }
+    else
       @comment = current_user.comments.build(comment_params)
       @comment.post = @post
 
       if @comment.save
-        render json: @comments.parent_comments, each_serialize: CommentSerializer, status: 200
+        render json: @comments.parent_comments.merge(status: 200), each_serialize: CommentSerializer
       else
-        render json: { errors: @comment.errors.full_messages }, status: 422
+        render json: { errors: @comment.errors.full_messages, status: 422 }
       end
-    else
-      render nothing: true, status: 401
     end
   end
 

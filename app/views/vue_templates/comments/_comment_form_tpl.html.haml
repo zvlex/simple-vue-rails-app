@@ -1,5 +1,6 @@
 %script( type='text/x-template' id='comment-form-tpl' )
-  %comment-notification-list(:notifications = 'notifications')
+  %ul
+    %comment-notification-list(:notifications = 'notifications')
 
   %div
     %pre(v-show = 'body')

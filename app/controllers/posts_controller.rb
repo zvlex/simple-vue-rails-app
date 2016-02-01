@@ -37,22 +37,21 @@ class PostsController < ApplicationController
         if current_user.included_in_favorites?(@post)
           [t('ui.small_notifications.favorite_added'), false]
         else
-          [t('ui.small_notifications.favorite_added'), true]
+          [t('ui.small_notifications.favorite_removed'), true]
         end
     else
       render nothing: true
     end
 
-    render json: { status: status, notice: notice, quantity: @post.favorites_quantity }
-
+    render json: { notice: notice, quantity: @post.favorites_quantity, status: status }
   end
 
   def vote
     json_data  =
       if current_user.rate_post(@post, params[:rate])
-        { success: t('ui.small_notifications.post_rating.voted') }
+        { notice: t('ui.small_notifications.post_rating.voted') }
       else
-        { notice: t('ui.small_notifications.post_rating.already_voted') }
+        { warning: t('ui.small_notifications.post_rating.already_voted') }
       end
 
     render json:  json_data.merge(quantity: @post.rating_quantity)
