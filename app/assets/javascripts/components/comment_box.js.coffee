@@ -27,12 +27,12 @@ window.CommentBox = Vue.extend(
       @$http.post(@postCommentsUrl, formData).then (response) ->
         @$nextTick ->
           switch response.data.status
-            when 200
+            when 422
+              child.$set('notifications', response.data.errors)
+            else
               @comments = response.data
               child.$set('body', undefined)
               @$broadcast('signal:hideForm')
-            when 422
-              child.$set('notifications', response.data.errors)
 )
 
 Vue.component('comment-box', window.CommentBox)

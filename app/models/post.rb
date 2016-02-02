@@ -5,6 +5,10 @@ class Post < ActiveRecord::Base
   has_many :post_votes
   has_many :user_votes, through: :post_votes, source: :user
 
+  validates :title, :body, presence: true
+  validates :title, :body, length: { in: 5..140 }
+  validates :title, uniqueness: true
+
   def favorites_quantity
     User.active.where('favorite_posts @> ?', "{#{self.id}}").count('*').to_i
   end

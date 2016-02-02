@@ -3,6 +3,9 @@
 = render partial: 'vue_templates/comments/comment_notification_list_tpl'
 = render partial: 'vue_templates/comments/comment_form_tpl'
 = render partial: 'vue_templates/comments/comment_tpl'
-= render partial: 'vue_templates/shared/markdown_editor_tpl'
+
+- if @post
+  = render partial: 'vue_templates/shared/markdown_editor_tpl'
+
 = render partial: 'vue_templates/shared/post_favorite_button_tpl'
 = render partial: 'vue_templates/shared/post_rating_buttons_tpl'

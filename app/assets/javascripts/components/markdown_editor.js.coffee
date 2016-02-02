@@ -7,7 +7,7 @@ window.MarkdownEditor = Vue.extend(
 
   methods:
     preview: ->
-      @$http.post('preview', { body: @body }).then (response) =>
+      @$http.post(Zvample.preview_posts_path(), { body: @body }).then (response) =>
         @html_data = response.data
 )
 

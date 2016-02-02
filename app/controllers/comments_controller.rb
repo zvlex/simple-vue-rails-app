@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       @comment.post = @post
 
       if @comment.save
-        render json: @comments.parent_comments.merge(status: 200), each_serialize: CommentSerializer
+        render json: @comments.parent_comments, each_serialize: CommentSerializer
       else
         render json: { errors: @comment.errors.full_messages, status: 422 }
       end
