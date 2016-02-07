@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160128113543) do
+ActiveRecord::Schema.define(version: 20160204171926) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,19 @@ ActiveRecord::Schema.define(version: 20160128113543) do
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "post_versions", force: :cascade do |t|
+    t.integer  "user_id",                        null: false
+    t.string   "title",                          null: false
+    t.text     "body",                           null: false
+    t.string   "aasm_state"
+    t.string   "decline_reason"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "inherit_version_id", default: 0, null: false
+  end
+
+  add_index "post_versions", ["user_id"], name: "index_post_versions_on_user_id", using: :btree
+
   create_table "post_votes", force: :cascade do |t|
     t.integer  "user_id",                null: false
     t.integer  "post_id",                null: false
@@ -44,15 +57,14 @@ ActiveRecord::Schema.define(version: 20160128113543) do
   add_index "post_votes", ["user_id"], name: "index_post_votes_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
-    t.string   "title",                        null: false
-    t.text     "body",                         null: false
-    t.boolean  "is_published", default: false, null: false
-    t.integer  "version",      default: 0,     null: false
+    t.boolean  "is_published",    default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "post_version_id"
   end
 
+  add_index "posts", ["post_version_id"], name: "index_posts_on_post_version_id", using: :btree
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -83,7 +95,9 @@ ActiveRecord::Schema.define(version: 20160128113543) do
   add_index "users", ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
 
+  add_foreign_key "post_versions", "users"
   add_foreign_key "post_votes", "posts"
   add_foreign_key "post_votes", "users"
+  add_foreign_key "posts", "post_versions"
   add_foreign_key "posts", "users"
 end

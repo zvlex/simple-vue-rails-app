@@ -1,0 +1,14 @@
+%h2
+  = @post_version.title
+
+%p
+  = markdown @post_version.body
+
+.row
+  .col-md-1
+    = link_to 'Edit', edit_post_version_path(@post_version), class: 'btn btn-default'
+
+  .col-md-2
+    - if @post_version.draft?
+      = button_to 'Send to moderation', send_to_moderation_post_version_path(@post_version), method: :put, class: 'btn btn-primary'
+

@@ -26,11 +26,10 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'sorcery'
 gem 'gon'
 gem 'active_model_serializers'
-# TODO: remove and write admin panel from scratch?
-gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
 gem 'simple_form'
 
 gem 'redcarpet'
+gem 'aasm'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 

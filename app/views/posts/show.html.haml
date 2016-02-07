@@ -2,9 +2,9 @@
   %article.col-md-12
     %header
       %h1
-        = @post.title
+        = @post.post_version.title
     %section
-      = markdown @post.body
+      = markdown @post.post_version.body
 
 %hr
 .row

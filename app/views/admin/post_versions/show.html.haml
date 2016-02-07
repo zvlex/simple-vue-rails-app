@@ -1,0 +1,44 @@
+.post-version
+  .panel.panel-default
+    .panel-heading
+      .row
+        .col-md-1
+          = link_to admin_post_versions_path, class: 'btn btn-default btn-xs' do
+            %span.glyphicon.glyphicon-chevron-left
+
+        - unless @post_version.declined?
+          .col-md-4.col-md-offset-5
+          .col-md-1
+            = button_to 'Approve', approve_admin_post_version_path(@post_version), method: :put, class: 'btn btn-success btn-xs'
+          .col-md-1
+            = link_to 'Decline', edit_decline_admin_post_version_path(@post_version), class: 'btn btn-danger btn-xs'
+
+      .row
+        .col-md-12
+          %h3= @post_version.title
+
+      %hr
+      .row
+        .col-md-3
+          %small
+            %strong User:
+            %mark #{@post_version.user.email}
+
+      .row
+        .col-md-3
+          %small
+            %strong Created:
+            %mark #{@post_version.created_at}
+
+      .row
+        .col-md-3
+          %span{ class: "label #{label_state_class(@post_version)}"}
+            = @post_version.aasm_state
+
+          - if @post_version.decline_reason?
+            .decline-hint
+              %small #{@post_version.decline_reason}
+
+    .post-panel.panel-body
+      .row
+        %p= markdown @post_version.body

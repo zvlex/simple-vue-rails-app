@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :comments
   has_many :post_votes
+  has_many :post_versions
 
   validates :email, :password, :password_confirmation, presence: true, if: :new_record?
 
@@ -43,5 +44,9 @@ class User < ActiveRecord::Base
     unless self.post_votes.where(post: post).exists?
       self.post_votes.create(post: post, rate: rate)
     end
+  end
+
+  def create_post_version(params)
+    self.post_versions.create(params)
   end
 end

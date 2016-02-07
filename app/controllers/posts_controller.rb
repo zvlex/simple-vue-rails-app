@@ -3,25 +3,19 @@ class PostsController < ApplicationController
   before_filter :find_post!, only: [:show, :add_to_favorites, :vote]
 
   def index
-    @posts = Post.order(created_at: :desc)
-  end
-
-  def new
-    @post = Post.new
+    @posts = Post.includes(:post_version).order(created_at: :desc)
   end
 
   def show
     @post_json_data = PostSerializer.new(@post, scope: current_user).to_json
   end
 
-  def create
-    @post = Post.new(post_params)
+  def edit
+    @post_version = current_user.posts.find(params[:id]).post_version
+  end
 
-    if @post.save
-      redirect_to post_path(@post), notice: 'Post created'
-    else
-      render :new
-    end
+  def posts_list
+   @posts = current_user.post_versions.where(aasm_state: params[:name])
   end
 
   def preview

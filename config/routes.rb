@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
   namespace :admin do
-    DashboardManifest::DASHBOARDS.each do |dashboard_resource|
-      resources dashboard_resource
-    end
+    root 'post_versions#index'
 
-    root controller: DashboardManifest::ROOT_DASHBOARD, action: :index
+    resources :post_versions, except: :destroy do
+      member do
+        get :edit_decline
+        put :approve
+        put :decline
+      end
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -27,9 +31,17 @@ Rails.application.routes.draw do
       post :preview
       put :add_to_favorites
       put :vote
+
+      get '/:name', action: :posts_list, name: /draft|on_moderation|declined/
     end
 
     resources :comments
+  end
+
+  resources :post_versions do
+    member do
+      put :send_to_moderation
+    end
   end
 
   resources :sessions, only: [:new, :create, :destroy]

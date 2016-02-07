@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Admin Panel
+    = include_gon
+    = stylesheet_link_tag    'backend', media: 'all'
+    = javascript_include_tag 'backend'
+    = csrf_meta_tags
+  %body
+    %header
+      %nav.navbar.navbar-default
+        .navbar-header
+          = link_to 'Admin Panel', admin_root_url, class: 'navbar-brand'
+        .collapse.navbar-collapse
+          .nav.navbar-nav
+            %li
+              = link_to 'Post Versions', admin_post_versions_url
+
+          .nav.navbar-nav.navbar-right
+            = link_to 'Front page', root_url, class: 'navbar-brand'
+
+    .container
+      = yield

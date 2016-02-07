@@ -1,5 +1,4 @@
--# %script( type='text/x-template' id='markdown-editor-tpl' )
-%div(inline-template)
+%markdown-editor(inline-template)
   = simple_form_for @post_version, defaults: { input_html: { class: 'form-control' } } do |f|
     .form-group
       = f.input :title

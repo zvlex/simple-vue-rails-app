@@ -1,0 +1,10 @@
+%h2= @post_version.title
+
+= simple_form_for @post_version, url: decline_admin_post_version_path(@post_version), method: :put do |f|
+  .form-group
+    = f.input :decline_reason, as: :text, input_html: { class: 'form-control' }
+  .form-group
+    = link_to :back, class: 'btn btn-default' do
+      %span.glyphicon.glyphicon-chevron-left
+      Back
+    = f.button :submit, "Decline", class: 'btn btn-danger'

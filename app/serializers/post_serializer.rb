@@ -1,7 +1,7 @@
 class PostSerializer < ActiveModel::Serializer
   include ActionView::Helpers::AssetTagHelper
 
-  attributes :id, :title, :body, :favorites_quantity, :is_empty, :votes_quantity, :is_voted, :default_rate, :user_post
+  attributes :id, :favorites_quantity, :is_empty, :votes_quantity, :is_voted, :default_rate, :user_post
 
   def favorites_quantity
     object.favorites_quantity

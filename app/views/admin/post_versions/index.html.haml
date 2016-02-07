@@ -1,0 +1,22 @@
+%table.table
+  %thead
+    %tr
+      %th ID
+      %th Title
+      %th State
+      %th Post
+  %tbody
+    - @post_versions.each do |post_version|
+      %tr
+        %td
+          = link_to post_version.id, admin_post_version_path(post_version)
+        %td #{post_version.title}
+        %td
+          %span{class: "label #{label_state_class(post_version)}"}
+            = post_version.aasm_state
+
+          - if post_version.decline_reason?
+            .decline-hint
+              %small #{post_version.decline_reason}
+        %td
+          = current_post_link(post_version)
