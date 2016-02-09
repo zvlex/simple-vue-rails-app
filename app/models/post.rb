@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   has_many :user_votes, through: :post_votes, source: :user
 
   def favorites_quantity
-    User.active.where('favorite_posts @> ?', "{#{self.id}}").count('*').to_i
+    User.favorites_quantity(self.id)
   end
 
   def rating_quantity

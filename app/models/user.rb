@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   scope :admins, -> { where(is_admin: true) }
   scope :active, -> { where(deleted_at: nil) }
+  scope :favorites_quantity, -> (post_id) { active.where("favorite_posts @> '{?}'", post_id).count.to_i }
 
   def add_or_drop_favorites!(post)
     if included_in_favorites?(post)
