@@ -10,6 +10,10 @@ class PostsController < ApplicationController
     @post_json_data = PostSerializer.new(@post, scope: current_user).to_json
   end
 
+  def new
+    @post_version = PostVersion.new
+  end
+
   def edit
     @post_version = current_user.posts.find(params[:id]).post_version
   end
