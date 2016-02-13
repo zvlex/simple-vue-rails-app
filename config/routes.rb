@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       put :add_to_favorites
       put :vote
 
-      get '/:name', action: :posts_list, name: /draft|on_moderation|declined/
+      get '/:state', action: :posts_list, state: /draft|on_moderation|declined/
     end
 
     resources :comments

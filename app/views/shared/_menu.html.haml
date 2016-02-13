@@ -1,0 +1,19 @@
+%nav.panel.panel-default
+  %header.panel-heading.text-center
+    %h2 Menu
+
+  %ul.panel-body.list-group.text-center
+    %li.list-group-item
+      = link_to 'posts/draft' do
+        Drafts
+        %span.badge
+
+    %li.list-group-item
+      = link_to 'posts/on_moderation' do
+        On moderation
+        %span.badge
+
+    %li.list-group-item
+      = link_to 'posts/declined' do
+        Declined
+        %span.badge

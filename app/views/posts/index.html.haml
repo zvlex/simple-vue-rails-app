@@ -1,5 +1,9 @@
 %h1 Posts
 
-- @posts.each do |post|
-  %h3
-    = link_to post.post_version.title, post_path(post)
+.row
+  .col-md-9
+    - @posts.each do |post|
+      %h3
+        = link_to post.post_version.title, post_path(post)
+  .col-md-3
+    = render 'shared/menu'

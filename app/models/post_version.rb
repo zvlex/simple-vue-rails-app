@@ -15,6 +15,8 @@ class PostVersion < ActiveRecord::Base
     scope state, -> { where(aasm_state: state).order(created_at: :desc) }
   end
 
+  scope :with_state, -> (name) { where(aasm_state: name) }
+
   aasm do
     state :draft, initial: true
     state :on_moderation

@@ -19,7 +19,7 @@ class PostsController < ApplicationController
   end
 
   def posts_list
-   @posts = current_user.post_versions.where(aasm_state: params[:name])
+    @posts = current_user.post_versions.with_state(params[:state])
   end
 
   def preview
