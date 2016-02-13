@@ -21,13 +21,15 @@
       .row
         .col-md-3
           %small
-            %strong User:
+            %strong
+              = PostVersion.human_attribute_name(:user)
             %mark #{@post_version.user.email}
 
       .row
         .col-md-3
           %small
-            %strong Created:
+            %strong
+              = PostVersion.human_attribute_name(:created_at)
             %mark #{@post_version.created_at}
 
       .row

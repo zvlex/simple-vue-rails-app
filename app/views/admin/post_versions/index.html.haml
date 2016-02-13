@@ -1,10 +1,15 @@
 %table.table
   %thead
     %tr
-      %th ID
-      %th Title
-      %th State
-      %th Post
+      %th
+        = PostVersion.human_attribute_name(:id)
+      %th
+        = PostVersion.human_attribute_name(:title)
+      %th
+        = PostVersion.human_attribute_name(:aasm_state)
+      %th
+        = PostVersion.human_attribute_name(:post)
+
   %tbody
     - @post_versions.each do |post_version|
       %tr
