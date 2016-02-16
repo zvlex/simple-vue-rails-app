@@ -21,7 +21,7 @@ describe Post do
       user.rate_post(post, rand_array[num])
     end
 
-    array_quantity = rand_array.reduce(&:+)
+    array_quantity = rand_array.sum
 
     expect(post.rating_quantity).to eq(array_quantity)
   end

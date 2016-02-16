@@ -16,6 +16,7 @@ class PostVersion < ActiveRecord::Base
   end
 
   scope :with_state, -> (name) { where(aasm_state: name) }
+  scope :current_draft, -> (post_version) { where(inherit_version_id: post_version.id).with_state(:draft) }
 
   aasm do
     state :draft, initial: true

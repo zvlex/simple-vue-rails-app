@@ -11,7 +11,7 @@ class Post < ActiveRecord::Base
   end
 
   def rating_quantity
-    self.post_votes.map(&:rate).reduce(&:+).to_i
+    self.post_votes.map(&:rate).sum
   end
 
   def owned_by?(user)

@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 
   def edit
     @post_version = current_user.posts.find(params[:id]).post_version
+
+    if current_version = current_user.post_versions.current_draft(@post_version).first
+      @post_version = current_version
+    end
   end
 
   def posts_list
