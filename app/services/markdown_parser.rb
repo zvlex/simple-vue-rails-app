@@ -10,6 +10,9 @@ class MarkdownParser
   end
 
   def to_html
-    Redcarpet::Markdown.new(renderer).render(markdown_data).html_safe
+    white_list_sanitizer = Rails::Html::WhiteListSanitizer.new
+    markdown = Redcarpet::Markdown.new(renderer).render(markdown_data)
+
+    white_list_sanitizer.sanitize(markdown).html_safe
   end
 end
