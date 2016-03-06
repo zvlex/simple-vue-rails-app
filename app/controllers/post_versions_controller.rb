@@ -7,10 +7,12 @@ class PostVersionsController < ApplicationController
   def edit; end
 
   def create
-    if @post_version = current_user.create_post_version(post_version_params)
+    @post_version = current_user.post_versions.build(post_version_params)
+
+    if @post_version.save
       redirect_to post_version_path(@post_version)
     else
-      render :new
+      render 'posts/new'
     end
   end
 

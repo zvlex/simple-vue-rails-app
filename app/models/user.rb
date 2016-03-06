@@ -46,8 +46,4 @@ class User < ActiveRecord::Base
       self.post_votes.create(post: post, rate: rate)
     end
   end
-
-  def create_post_version(params)
-    self.post_versions.create(params)
-  end
 end
